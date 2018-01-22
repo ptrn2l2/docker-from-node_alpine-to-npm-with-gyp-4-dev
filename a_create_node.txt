@@ -1,0 +1,4 @@
+> docker build -t node_gyp_for_devdev -f node_gyp_for_devdev.Dockerfile .
+> docker build -t node_gyp_for_devdev:8.9-alpine -f node_gyp_for_devdev.Dockerfile .
+> docker build -t ptrn2l2/node_gyp_for_devdev -f node_gyp_for_devdev.Dockerfile .
+> docker build -t ptrn2l2/node_gyp_for_devdev:8.9-alpine -f node_gyp_for_devdev.Dockerfile .

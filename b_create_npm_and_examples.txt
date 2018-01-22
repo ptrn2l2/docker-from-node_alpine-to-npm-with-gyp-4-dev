@@ -1,0 +1,71 @@
+# For current folder mapping:
+#   - windows "command prompt": %cd%
+#   - powershell: ${PWD}
+#   - bash: $(pwd)
+#
+# In the following examples I will use {pwd}
+# build image:
+# > docker build -t npm_gyp_for_dev -f npm_gyp_for_dev.Dockerfile .
+# > docker build -t npm_gyp_for_dev:8.9-alpine -f npm_gyp_for_dev.Dockerfile .
+# > docker build -t ptrn2l2/npm_gyp_for_dev -f npm_gyp_for_dev.Dockerfile .
+# > docker build -t ptrn2l2/npm_gyp_for_dev:8.9-alpine -f npm_gyp_for_dev.Dockerfile .
+#
+# build image with tag:
+# > docker build -t npm_gyp_for_dev:8.9-alpine -f npm.Dockerfile .
+#
+# run pwd && ls (i.e.: sh -c "pwd && ls")
+# > docker run --rm -it -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm --entrypoint sh npm_gyp_for_dev:8.9-alpine -c "pwd && ls"
+# ...if you don't see local folder's file in Windows, call in administrator's powershell:
+#           Set-NetConnectionProfile -interfacealias "vEthernet (DockerNAT)" -NetworkCategory Private
+# the share another time the drives in docker settings
+#
+# duplicate app.js in host
+# > cp app.js something.txt
+# > ls
+# delete it from docker container
+# > docker run --rm -it -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm --entrypoint sh npm_gyp_for_dev:8.9-alpine -c "rm something.txt"
+# duplicate using docker
+# > docker run --rm -it -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm --entrypoint sh npm_gyp_for_dev:8.9-alpine -c "cp app.js something.txt"
+# delete it from docker container, but using "rm" as entrypoint
+# > docker run --rm -it -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm --entrypoint rm npm_gyp_for_dev:8.9-alpine something.txt
+
+# run sh into a temporary container
+# > docker run --rm -it -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm --entrypoint sh  npm_gyp_for_dev:8.9-alpine
+# exit using "exit" or <CTRL>-<D>
+# Install npm packages
+# > docker run --rm -it -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm npm_gyp_for_dev:8.9-alpine install
+# > list local "node_modules", it should be empty:
+# > ls node_modules/
+# > list local "node_modules" in "npm_gyp_for_dev_vol" named volume:
+# > docker run --rm -it -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm --entrypoint sh npm_gyp_for_dev:8.9-alpine -c "ls node_modules/"
+#
+# (
+# To remove npm cache do, bu DON'T, you need it for dev purpose!
+#     > docker run --rm -it -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm npm_gyp_for_dev:8.9-alpine cache clean --force
+# )
+#
+# If initial package.json is:
+#            {
+#              "name": "npm-with-gyp-4-dev",
+#              "version": "1.0.0",
+#              "description": "",
+#              "main": "app.js",
+#              "scripts": {
+#                "start": "node app.js",
+#                "watch": "TODO: use nodemon",
+#                "test": "echo \"Error: no test specified\" && exit 1"
+#              },
+#              "author": "",
+#              "license": "ISC",
+#              "dependencies": {
+#                "express": "^4.16.2"
+#              }
+#            }
+#
+# Add nodemon
+# > docker run --rm -it -p 3000:3000 -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --name docker_npm npm_gyp_for_dev npm install nodemon --save-dev
+# Now package.json has nodemon in devDependencies section!
+#
+# Run example express app
+# > docker run --rm -it -p 3000:3000 -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --name docker_npm npm_gyp_for_dev
+
