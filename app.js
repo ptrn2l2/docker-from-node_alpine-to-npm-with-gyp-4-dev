@@ -1,11 +1,16 @@
-const express = require('express');
-const app = express();
-const listening_port = process.env.PORT || 3080;
+let express = require('express');
+let path = require('path');
+let app = express();
+let listeninPort = process.env.PORT || 3080;
 
-app.listen(listening_port, () => console.log('Express app started && listening on port ', listening_port));
+app.use(express.static(__dirname + '/assets'));
+
+app.listen(listeninPort, function() {
+    console.log('Express app started && listening on port ', listeninPort);
+});
 
 app.get('/', function (req, res) {
-    res.send('Hello World!!!');
+    res.sendFile(path.join(__dirname, 'assets/index.html'));
 });
 
 

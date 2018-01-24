@@ -1,7 +1,7 @@
 docker build -t node_gyp_for_dev -f node_gyp_for_dev.Dockerfile .
 docker build -t node_gyp_for_dev:8.9-alpine -f node_gyp_for_dev.Dockerfile .
 docker build -t ptrn2l2/node_gyp_for_dev -f node_gyp_for_dev.Dockerfile .
-docker build -t ptrn2l2/node_gyp_for_dev:8.9-alpine -f node_gyp_for_dev.Dockerfile .
+rem docker build -t ptrn2l2/node_gyp_for_dev:8.9-alpine -f node_gyp_for_dev.Dockerfile .
 
 docker build -t npm_gyp_for_dev -f npm_gyp_for_dev.Dockerfile .
 docker build -t npm_gyp_for_dev:8.9-alpine -f npm_gyp_for_dev.Dockerfile .

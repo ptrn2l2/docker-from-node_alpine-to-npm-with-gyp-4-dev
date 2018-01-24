@@ -7,7 +7,7 @@ RUN npm install -g webpack webpack-dev-server
 ENV WEBPACK_DEV_SERVER_PORT 44297
 ENV WEBPACKCONFIG webpack.config.js
 
-EXPOSE 80 443 3000 44297
+EXPOSE 80 443 3080 44297
 
 # For local webpack-dev-server installs: 
 # ENTRYPOINT ["node.exe"]

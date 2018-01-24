@@ -63,9 +63,11 @@
 #            }
 #
 # Add nodemon
-# > docker run --rm -it -p 3000:3000 -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --name docker_npm npm_gyp_for_dev npm install nodemon --save-dev
+# > docker run --rm -it -p 3000:3000 -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --env NODE_ENV=development --name docker_npm npm_gyp_for_dev install nodemon --save-dev
 # Now package.json has nodemon in devDependencies section!
 #
+# Ti install node modules in dev remember to set ENV=development or dev deps will not be installed
+# > docker run --rm -it -p 3000:3000 -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --env NODE_ENV=development --name docker_npm npm_gyp_for_dev install
 # Run example express app
-# > docker run --rm -it -p 3000:3000 -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --name docker_npm npm_gyp_for_dev
+# > docker run --rm -it -p 3080:3080 -v ${pwd}:/workdir -v npm_gyp_for_dev_vol:/workdir/node_modules --env NODE_ENV=development --name docker_npm npm_gyp_for_dev run watch
 
