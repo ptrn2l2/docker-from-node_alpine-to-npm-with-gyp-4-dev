@@ -1,4 +1,8 @@
-> docker build -t node_gyp_for_devdev -f node_gyp_for_devdev.Dockerfile .
-> docker build -t node_gyp_for_devdev:8.9-alpine -f node_gyp_for_devdev.Dockerfile .
-> docker build -t ptrn2l2/node_gyp_for_devdev -f node_gyp_for_devdev.Dockerfile .
-> docker build -t ptrn2l2/node_gyp_for_devdev:8.9-alpine -f node_gyp_for_devdev.Dockerfile .
+docker build -t node_gyp_for_dev -f node_gyp_for_dev.Dockerfile .
+docker build -t ptrn2l2/node_gyp_for_dev:8.9-alpine -f node_gyp_for_dev.Dockerfile .
+
+# run pwd && ls (i.e.: sh -c "pwd && ls")...
+docker run --rm -it -v ${pwd}:/workdir -v node_gyp_for_dev_vol:/workdir/node_modules --rm --name docker_npm --entrypoint sh node_gyp_for_dev -c "pwd && ls"
+# ...if you don't see local folder's file in Windows, call in administrator's powershell:
+#           Set-NetConnectionProfile -interfacealias "vEthernet (DockerNAT)" -NetworkCategory Private
+# then SHARE ANOTHER TIME THE DRIVES IN DOCKER SETTINGS!

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "watch": "nodemon -L app.js",
+    "watch": "nodemon app.js",
+    "watch_compat": "nodemon -L app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
