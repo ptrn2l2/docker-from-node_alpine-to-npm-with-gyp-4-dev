@@ -50,6 +50,7 @@ RUN npm install -g node-gyp
 # ##################################################
 RUN mkdir /workdir && cd /workdir
 WORKDIR /workdir
+ENV PATH /workdir/node_modules/.bin:$PATH
 # Here in production one should do:
 #     COPY package.json .
 #     RUN npm install
