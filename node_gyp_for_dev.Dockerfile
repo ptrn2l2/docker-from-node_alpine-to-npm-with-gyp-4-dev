@@ -34,6 +34,12 @@ RUN apk update && apk upgrade && \
 # ##################################################
 
 # ##################################################
+# TODO for non root user:
+# RUN npm config set prefix /workdir/npm-global
+# RUN export PATH=/workdir/npm-global:$PATH
+# ##################################################
+
+# ##################################################
 # NOTE: to override NODE_ENV use  on command line :
 #      -e "NODE_ENV=development"
 ENV NODE_ENV=production
